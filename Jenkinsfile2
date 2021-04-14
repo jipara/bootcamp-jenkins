@@ -1,0 +1,19 @@
+peline {
+    agent any
+    stages {
+        stage('Stage 1') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/jipara/bootcamp-hw.git'
+            }
+        }
+        stage('stage 4') {
+            steps {
+                sh 'gcloud container clusters get-credentials kubernetes-bootcamp-cluster --zone us-central1-b --project genuine-vent-308402'
+                sh 'kubectl set image deployment/events-internal internal=jipara/internal:v1 --record '
+            }
+        }
+    }
+
+}
+
